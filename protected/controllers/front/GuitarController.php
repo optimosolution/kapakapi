@@ -26,7 +26,7 @@ class GuitarController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view', 'download'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -41,6 +41,12 @@ class GuitarController extends Controller {
                 'users' => array('*'),
             ),
         );
+    }
+    
+    public function actionDownload($id) {
+        $this->render('download', array(
+            'model' => $this->loadModel($id),
+        ));
     }
 
     /**
