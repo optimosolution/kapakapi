@@ -55,14 +55,19 @@ class SiteController extends Controller {
         $this->pageTitle = Yii::app()->name;
         Yii::app()->clientScript->registerMetaTag(Yii::app()->name . ' - Site description.', 'description');
         Yii::app()->clientScript->registerMetaTag("keywords,here", 'keywords');
+        
         //Guitar/Chords grid
-        $model = new Guitar('search_fronend');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Guitar']))
-            $model->attributes = $_GET['Guitar'];
-
+        $criteria = new CDbCriteria;
+        $criteria->addCondition('status=1');
+        $criteria->order = 'created_on DESC, id DESC';
+        $dataProvider = new CActiveDataProvider('Guitar', array(
+            'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => 16,
+            ),
+        ));       
         $this->render('index', array(
-            'model' => $model,
+            'dataProvider' => $dataProvider,
         ));
     }
 

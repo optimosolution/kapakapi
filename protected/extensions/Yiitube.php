@@ -30,6 +30,7 @@ class Yiitube extends CWidget {
      */
     private $_height = array(
         'youtube' => array(
+            'extrasmall' => 250,
             'small' => 339,
             'normal' => 390,
             'big' => 510,
@@ -60,6 +61,7 @@ class Yiitube extends CWidget {
      */
     private $_width = array(
         'youtube' => array(
+            'extrasmall' => 239,
             'small' => 540,
             'normal' => 640,
             'big' => 853,
